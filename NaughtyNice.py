@@ -12,6 +12,7 @@ pygame.font.init()
 # This runs the Naughty/Nice Gag
 # Display Parchment
 background = pygame.image.load ("/home/pi/Christmas-2015/Assets/brown-parchment.jpg")
+global screen
 screen = pygame.display.set_mode (background.get_size())
 font = pygame.font.SysFont('sans-serif', 160, True)
 screen.blit (background, (0,0) )
