@@ -2,7 +2,7 @@ __author__ = 'madsens'
 
 import pygame
 import Lights
-import TextFade
+#import TextFade
 Lights.setup()
 # This runs the Naughty/Nice Gag
 # Display Parchment
