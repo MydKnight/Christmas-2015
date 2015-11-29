@@ -43,11 +43,12 @@ while True:
         fontSurface = pygame.Surface((400, 100))
         fontSurface.fill((255,255,255))
         fontSurface.blit(text, pygame.Rect(0,0,10,10))
-        textpos.centerx = screen.get_rect().centerx
+
 
         for x in range (255):
-            fontSurface.set_alpha(x)
-            screen.blit(text, textpos)
+            fontSurface.set_alpha(50)
+            textpos.centerx = screen.get_rect().centerx
+            screen.blit(fontSurface, textpos)
             pygame.display.flip()
             pygame.time.delay(20)
 
