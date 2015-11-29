@@ -22,7 +22,7 @@ class Background(pygame.sprite.Sprite):
 BackGround = Background('/home/pi/Christmas-2015/Assets/brown-parchment.jpg', [0,0])
 
 while 1:
-    screen.fill([255, 255, 255])
+    screen.fill([0, 0, 0])
     screen.blit(BackGround.image, BackGround.rect)
 # This runs the Naughty/Nice Gag
 # Display Parchment
