@@ -4,7 +4,7 @@ import datetime
 import time
 
 print 'Starting'
-Movies.StartLoop('/home/pi/Christmas-2015/Assets/Fireplace')
+Movies.StartLoop('/home/pi/Christmas-2015/Assets/DayLoop')
 time.sleep(10)
 
 while True:
