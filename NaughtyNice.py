@@ -36,14 +36,22 @@ while True:
         name = rfid
 
         # Fadein Name of scanned ID
-        label = font.render(name, True, (0, 128, 0))
-        newSurf = pygame.Surface(font.size(name))
-        newSurf.blit(label,(0,0))
-        for x in range (225):
-            #newSurf.set_alpha(x - 255)
-            screen.blit(newSurf, (100,100))
-            pygame.display.flip()
-            pygame.time.delay(20)
+        # Display some text
+        font = pygame.font.Font(None, 36)
+        text = font.render("Hello There", 1, (10, 10, 10))
+        textpos = text.get_rect()
+        textpos.centerx = screen.get_rect().centerx
+        screen.blit(text, textpos)
+        pygame.display.flip()
+
+        #label = font.render(name, True, (0, 128, 0))
+        #newSurf = pygame.Surface(font.size(name))
+        #newSurf.blit(label,(0,0))
+        #for x in range (225):
+        #    #newSurf.set_alpha(x - 255)
+        #    screen.blit(newSurf, (100,100))
+        #    pygame.display.flip()
+        #    pygame.time.delay(20)
 
 # Fade In Happy/Sad Claus
 
