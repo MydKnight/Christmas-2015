@@ -41,8 +41,8 @@ while True:
         text = font.render(name, 1, (10, 10, 10))
         textpos = text.get_rect()
         textpos.centerx = screen.get_rect().centerx
-        screen.blit(text, textpos)
-        pygame.display.flip()
+        #screen.blit(text, textpos)
+        #pygame.display.flip()
 
         for x in range (225):
             text.set_alpha(x - 255)
