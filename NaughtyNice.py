@@ -39,13 +39,13 @@ while True:
         # Display some text
         font = pygame.font.Font(None, 36)
         text = font.render(name, 1, (10, 10, 10))
-        text.set_alpha(100)
+        text.set_alpha(10)
         textpos = text.get_rect()
         textpos.centerx = screen.get_rect().centerx
         screen.blit(text, textpos)
         pygame.display.flip()
 
-        for x in range (len(name)):
+        for x in range (255):
             text.set_alpha(x)
             print x
             screen.blit(text, textpos)
