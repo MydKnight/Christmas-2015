@@ -42,14 +42,14 @@ while True:
         text.set_alpha(100)
         textpos = text.get_rect()
         textpos.centerx = screen.get_rect().centerx
-        #screen.blit(text, textpos)
-        #pygame.display.flip()
+        screen.blit(text, textpos)
+        pygame.display.flip()
 
         for x in range (len(name)):
             text.set_alpha(x)
             print x
             screen.blit(text, textpos)
-            pygame.display.flip()
+            #pygame.display.flip()
             pygame.time.delay(20)
 
 # Fade In Happy/Sad Claus
