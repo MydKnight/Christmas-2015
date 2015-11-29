@@ -14,8 +14,9 @@ pygame.font.init()
 
 while True:
     # Display Parchment
-    background = pygame.image.load ("/home/pi/Christmas-2015/Assets/brown-parchment.jpg").convert()
+    background = pygame.image.load ("/home/pi/Christmas-2015/Assets/brown-parchment.jpg")
     screen = pygame.display.set_mode (background.get_size())
+    background = pygame.image.load ("/home/pi/Christmas-2015/Assets/brown-parchment.jpg").convert()
     font = pygame.font.SysFont('sans-serif', 160, True)
     screen.blit (background, (0,0) )
     pygame.display.flip()
