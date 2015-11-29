@@ -25,9 +25,9 @@ while True:    # Runs until break is encountered. We want to set it to break on 
         Popen(['mpg321', '/home/pi/Christmas-2015/Assets/ChristmasOpener.mp3'], stdout=PIPE, close_fds=True)
 
         #Trigger GPIO Pins 33 to turn on project0r. Then wait 30 seconds for the audio to finish
-        Lights.on([37])
+        Lights.off([37])
         time.sleep(30)
-        Lights.off({37})
+        Lights.on({37})
 
         #Turn the reader back on.
         os.system("/home/pi/Halloween2015/Scripts/enableRFID.sh")
