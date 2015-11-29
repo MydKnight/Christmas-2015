@@ -40,7 +40,8 @@ while True:
         font = pygame.font.Font(None, 36)
         text = font.render(name, 1, (10, 10, 10))
         textpos = text.get_rect()
-        fontSurface = pygame.Surface((textpos))
+        print textpos
+        fontSurface = pygame.Surface((400, 100))
         fontSurface.fill((255,255,255))
         fontSurface.blit(text, pygame.Rect(0,0,10,10))
         fontSurface.set_alpha(50)
