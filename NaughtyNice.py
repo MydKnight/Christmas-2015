@@ -7,6 +7,7 @@ import Lights
 #Lights.setup()
 
 pygame.display.init()
+pygame.font.init()
 
 # This runs the Naughty/Nice Gag
 # Display Parchment
