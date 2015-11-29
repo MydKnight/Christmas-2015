@@ -1,6 +1,7 @@
 __author__ = 'madsens'
 
 import pygame
+import os
 import Lights
 #import TextFade
 #Lights.setup()
@@ -14,10 +15,17 @@ screen = pygame.display.set_mode (background.get_size())
 screen.blit (background, (0,0) )
 pygame.display.flip()
 
-# Wait for Input
-rfid = raw_input()
-# On Input, Disable Reader
-pygame.quit()
+while True:
+    # Wait for Input
+    rfid = raw_input()
+
+    # If STOP, Quit the program
+    if rfid == "STOP":
+        pygame.quit()
+    else:
+        # On Input, Disable Reader
+        os.system("/home/pi/Christmas-2015/Scripts/disableRFID.sh")
+
 # Get the Name from the Scanned ID. For now just pass ID
 
 # Fadein Name of scanned ID
@@ -32,4 +40,5 @@ pygame.quit()
 
 # Turn off GPIO Pin
 
-# Reactivate Reader
+        # Reactivate Reader
+        os.system("/home/pi/Christmas-2015/Scripts/enableRFID.sh")
