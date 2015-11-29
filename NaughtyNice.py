@@ -18,6 +18,7 @@ screen.blit (background, (0,0) )
 pygame.display.flip()
 
 while True:
+    global screen
     # Wait for Input
     rfid = raw_input()
 
