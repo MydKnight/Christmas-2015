@@ -3,7 +3,7 @@ __author__ = 'madsens'
 import pygame
 import Lights
 #import TextFade
-Lights.setup()
+#Lights.setup()
 
 pygame.init()
 clock = pygame.time.Clock()
