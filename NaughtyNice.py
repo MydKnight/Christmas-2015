@@ -47,7 +47,7 @@ while True:
 
         for x in range (255):
             fontSurface.set_alpha(x)
-            textpos.centerx = screen.get_rect().center
+            textpos.center = screen.get_rect().center
             screen.blit(fontSurface, textpos)
             pygame.display.flip()
             pygame.time.delay(20)
