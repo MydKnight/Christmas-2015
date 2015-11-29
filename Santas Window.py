@@ -1,7 +1,7 @@
 __author__ = 'madsens'
 import Movies
-from datetime import datetime
 import time
+import datetime
 
 print 'Starting'
 #Movies.StartLoop('/home/pi/Halloween2015/Assets/LivingLogo')
