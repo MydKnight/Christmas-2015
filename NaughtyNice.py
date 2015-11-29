@@ -46,6 +46,7 @@ while True:
 
         for x in range (225):
             text.set_alpha(x)
+            print x
             screen.blit(text, textpos)
             pygame.display.flip()
             pygame.time.delay(20)
