@@ -1,15 +1,17 @@
 __author__ = 'madsens'
 import Movies
-from datetime import datetime, time
+import datetime
+import time
+from time import sleep
 
 print 'Starting'
 #Movies.StartLoop('/home/pi/Halloween2015/Assets/LivingLogo')
 
 while True:
-    now = datetime.now()
+    now = datetime.datetime.now()
     now_time = now.time()
     #If between 6AM and 5PM, Play Daytime
-    if time(6,00) <= now.time() <= time(17,00):
+    if datetime.time(6,00) <= now.time() <= datetime.time(17,00):
         print "Its Daytime"
         #Movies.StopLoop()
         #Movies.StartLoop('/home/pi/Halloween2015/Assets/DayLoop')
@@ -18,3 +20,4 @@ while True:
         #Movies.StopLoop()
         #Movies.StartLoop('/home/pi/Halloween2015/Assets/NightLoop')
     print "Sleeping for one hour"
+    time.sleep(3600)
