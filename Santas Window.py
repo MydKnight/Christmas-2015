@@ -19,4 +19,4 @@ while True:
         #Movies.StopLoop()
         #Movies.StartLoop('/home/pi/Halloween2015/Assets/NightLoop')
     print "Sleeping for one hour"
-    time.time.sleep(3600)
+    time.sleep(3600)
