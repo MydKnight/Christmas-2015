@@ -53,7 +53,10 @@ while True:
             pygame.time.delay(20)
 
         # Activate Naughty or Nice Pin
-        Lights.on([33])
+        if (len(name) % 2 == 0 ):
+            Lights.on([33])
+        else:
+            Lights.on([35])
 
         # Fade In Happy/Sad Claus
 
@@ -70,6 +73,7 @@ while True:
 
         # Turn off GPIO Pin
         Lights.off([33])
+        Lights.off([35])
 
         # Reactivate Reader
         os.system("/home/pi/Christmas-2015/Scripts/enableRFID.sh")
