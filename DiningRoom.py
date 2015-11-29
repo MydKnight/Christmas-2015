@@ -26,7 +26,7 @@ while True:    # Runs until break is encountered. We want to set it to break on 
 
         #Trigger GPIO Pins 33 to turn on project0r. Then wait 30 seconds for the audio to finish
         Lights.off([37])
-        time.sleep(30)
+        time.sleep(27)
         Lights.on({37})
 
         #Turn the reader back on.
