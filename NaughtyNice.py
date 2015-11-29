@@ -35,7 +35,7 @@ while True:
         name = rfid
 
         # Fadein Name of scanned ID
-        label = font.render(name,1,( ))
+        label = font.render(name,1)
         newSurf = pygame.Surface(font.size(name))
         newSurf.blit(label,(0,0))
         for x in range (225):
