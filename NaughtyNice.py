@@ -11,10 +11,19 @@ size = width, height = 1024, 768
 screen = pygame.display.set_mode(size)
 font = pygame.font.SysFont('serif', 160, True)
 fps_font = pygame.font.SysFont('serif', 20, True)
-bg = pygame.image.load("/home/pi/Christmas-2015/Assets/brown-parchment.jpg")
+
+class Background(pygame.sprite.Sprite):
+    def __init__(self, image_file, location):
+        pygame.sprite.Sprite.__init__(self)  #call Sprite initializer
+        self.image = pygame.image.load(image_file)
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
+
+BackGround = Background('/home/pi/Christmas-2015/Assets/brown-parchment.jpg', [0,0])
 
 while 1:
-    screen.blit(bg,(0,0))
+    screen.fill([255, 255, 255])
+    screen.blit(BackGround.image, BackGround.rect)
 # This runs the Naughty/Nice Gag
 # Display Parchment
 
