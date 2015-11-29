@@ -5,7 +5,7 @@ import time
 from time import sleep
 
 print 'Starting'
-#Movies.StartLoop('/home/pi/Halloween2015/Assets/LivingLogo')
+Movies.StartLoop('/home/pi/Halloween2015/Assets/DayLoop')
 
 while True:
     now = datetime.datetime.now()
