@@ -37,17 +37,17 @@ while True:
 
         # Fadein Name of scanned ID
         # Display some text
-        font = pygame.font.Font(None, 36)
+        font = pygame.font.Font(None, 48)
         text = font.render(name, 1, (10, 10, 10))
         textpos = text.get_rect()
         fontSurface = pygame.Surface((400, 100))
-        fontSurface.fill((255,255,255))
+        fontSurface.fill((0,0,0))
         fontSurface.blit(text, pygame.Rect(0,0,10,10))
 
 
         for x in range (255):
-            fontSurface.set_alpha(50)
-            textpos.centerx = screen.get_rect().centerx
+            fontSurface.set_alpha(x)
+            textpos.centerx = screen.get_rect().center
             screen.blit(fontSurface, textpos)
             pygame.display.flip()
             pygame.time.delay(20)
