@@ -8,7 +8,6 @@ import Lights
 
 pygame.display.init()
 pygame.font.init()
-pygame.sprite.init()
 
 # This runs the Naughty/Nice Gag
 
