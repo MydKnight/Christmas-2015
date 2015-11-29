@@ -5,7 +5,7 @@ import time
 
 print 'Starting'
 Movies.StartLoop('/home/pi/Christmas-2015/Assets/DayLoop')
-time.sleep(10)
+time.sleep(1)
 
 while True:
     now = datetime.datetime.now()
