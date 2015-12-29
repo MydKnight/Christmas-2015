@@ -38,6 +38,14 @@ def HeartBeat():
         print res
     else:
         print "Row Found. Need to update row."
+        heartbeat = datetime.datetime.now()
+        heartbeat = heartbeat.strftime('%Y-%m-%d %H:%M:%S')
+        #Get the IP address of the unit.
+        ip = get_ip_address('wlan0')
+        print ip
+        res = cur.execute("UPDATE PIS SET HeartBeat = %s, IPAddress = %s WHERE MacAddress = %s;",(heartbeat,str(ip), str(mac)))
+        print res
+
     #ToDo: Allow remote naming of PI by MAC Address.
 
     #try to write access of the pi to a log file
