@@ -45,7 +45,7 @@ def HeartBeat():
         print ip
         cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
         piid = cur.fetchone()[0]
-        res = cur.execute("INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 1, %d);",(heartbeat, int(piid)))
+        res = cur.execute("INSERT INTO Activity (ActivationTime, ActivationType) VALUES (%s, 1);",(heartbeat, int(piid)))
         print res
 
     #ToDo: Allow remote naming of PI by MAC Address.
