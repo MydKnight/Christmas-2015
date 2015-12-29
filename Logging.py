@@ -44,7 +44,7 @@ def HeartBeat():
         ip = get_ip_address('wlan0')
         print ip
         cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
-        print cur.fetchone()
+        print cur.fetchone()[0]
         #res = cur.execute("UPDATE PIS SET HeartBeat = %s, IPAddress = %s WHERE MacAddress = %s;",(heartbeat,str(ip), str(mac)))
         #print res
 
