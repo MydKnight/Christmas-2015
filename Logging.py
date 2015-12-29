@@ -19,6 +19,8 @@ def HeartBeat():
     cur = db.cursor()
 
     #Select the row in the pis table that matches the mac address
+    res = cur.execute("SELECT * FROM  PIS WHERE MacAddress = %s;",mac)
+    print res
 
     #If no rows returned, create a new row.
 
