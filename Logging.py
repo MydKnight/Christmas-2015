@@ -43,8 +43,10 @@ def HeartBeat():
         #Get the IP address of the unit.
         ip = get_ip_address('wlan0')
         print ip
-        res = cur.execute("UPDATE PIS SET HeartBeat = %s, IPAddress = %s WHERE MacAddress = %s;",(heartbeat,str(ip), str(mac)))
-        print res
+        cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
+        print cur.fetchone()
+        #res = cur.execute("UPDATE PIS SET HeartBeat = %s, IPAddress = %s WHERE MacAddress = %s;",(heartbeat,str(ip), str(mac)))
+        #print res
 
     #ToDo: Allow remote naming of PI by MAC Address.
 
