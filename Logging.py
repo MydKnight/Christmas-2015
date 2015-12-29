@@ -23,6 +23,8 @@ def HeartBeat():
     print res
 
     #If no rows returned, create a new row.
+    if res == 0:
+        print "Row not found. Need to create a new entry"
 
     #ToDo: Allow remote naming of PI by MAC Address.
 
