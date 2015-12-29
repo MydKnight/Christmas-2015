@@ -1,6 +1,9 @@
 __author__ = 'madsens'
 import MySQLdb
 import datetime
+import socket
+import fcntl
+import struct
 from uuid import getnode as get_mac
 
 def HeartBeat():
@@ -24,8 +27,17 @@ def HeartBeat():
 
     #If no rows returned, create a new row.
     if res == 0:
-        print "Row not found. Need to create a new entry"
-
+        print "Row not found. Need to create a new entry."
+        #Assume install date is now as its not in our database
+        installDate = datetime.datetime.now()
+        installDate = installDate.strftime('%Y-%m-%d %H:%M:%S')
+        #Get the IP address of the unit.
+        ip = get_ip_address('wlan0')
+        print ip
+        #res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s, %s);",(installDate,ip, mac))
+        #print res
+    else:
+        print "Row Found. Need to update row."
     #ToDo: Allow remote naming of PI by MAC Address.
 
     #try to write access of the pi to a log file
@@ -70,3 +82,11 @@ def LogAudioAccess(rfid, filename):
     res = cur.execute("INSERT INTO Activity (RFID, PIID, ActivationTime, FileName) VALUES (%s,1,%s, %s);",(rfid,activationTime, filename))
     print res
 #if connect fails or if write fails, log connection failure to an error log and log the access to a local access log.
+
+def get_ip_address(ifname):
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    return socket.inet_ntoa(fcntl.ioctl(
+        s.fileno(),
+        0x8915,  # SIOCGIFADDR
+        struct.pack('256s', ifname[:15])
+    )[20:24])
