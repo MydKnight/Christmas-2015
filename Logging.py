@@ -34,7 +34,7 @@ def HeartBeat():
         #Get the IP address of the unit.
         ip = get_ip_address('wlan0')
         print ip
-        res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s, %s);",(installDate,str(ip), str(mac)))
+        res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s);",(installDate,str(ip), str(mac)))
         print res
     else:
         print "Row Found. Need to update row."
