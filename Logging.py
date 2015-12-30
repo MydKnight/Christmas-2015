@@ -91,9 +91,7 @@ def LogAccess(rfid):
     piid = cur.fetchone()[0]
     # Try to write access of the pi to a log file
     res = cur.execute("""INSERT INTO Activity (RFID, ActivationTime, ActivationType, PIID) VALUES (%s, %s, 2, %s);""", (rfid, logTime, piid))
-    #res = cur.execute("""INSERT INTO Activity (RFID, ActivationTime, ActivationType, PIID) VALUES (%s, %s, 0, %s);""", (str(rfid), logTime, 2, str(piid)))
-    print res
-    #if connect fails or if write fails, log connection failure to an error log and log the access to a local access log.
+    #print res
 
 def LogAudioAccess(rfid, filename):
     # This file manages the connectivity to the database for logging access to the units. As a fallback, it
