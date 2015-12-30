@@ -90,7 +90,7 @@ def LogAccess(rfid):
     cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
     piid = cur.fetchone()[0]
     # Try to write access of the pi to a log file
-    res = cur.execute("""INSERT INTO Activity (RFID, ActivationTime, ActivationType, PIID) VALUES (%s, %s, 0, %s);""", (rfid, logTime, 2, piid))
+    res = cur.execute("""INSERT INTO Activity (RFID, ActivationTime, ActivationType, PIID) VALUES (%s, %s, 0, %s);""", (str(rfid), logTime, 2, str(piid)))
     print res
     #if connect fails or if write fails, log connection failure to an error log and log the access to a local access log.
 
