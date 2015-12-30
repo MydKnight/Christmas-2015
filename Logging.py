@@ -11,7 +11,7 @@ from uuid import getnode as get_mac
 
 #ToDo: Allow remote naming of PI by MAC Address.
 
-#Global Variables used by most/all functions
+# Global Variables used by most/all functions
 db = MySQLdb.connect(host="mysql.shilohmadsen.com",
               user="shilohmadsencom",
               passwd="6DNN7Snp",
@@ -26,7 +26,12 @@ logTime = logTime.strftime('%Y-%m-%d %H:%M:%S')
 #DB Cursor
 cur = db.cursor()
 
+def construct():
+    logTime = datetime.datetime.now()
+    logTime = logTime.strftime('%Y-%m-%d %H:%M:%S')
+
 def HeartBeat():
+    construct()
     #Select the row in the pis table that matches the mac address
     res = cur.execute("SELECT * FROM  PIS WHERE MacAddress = %s;",str(mac))
     #print res
@@ -52,16 +57,17 @@ def HeartBeat():
     # print res
 
 def PowerLog():
+    construct()
     #Select the row in the pis table that matches the mac address
     res = cur.execute("SELECT * FROM  PIS WHERE MacAddress = %s;",str(mac))
-    print res
+    # print res
 
     # Get the IP address of the unit.
     ip = get_ip_address('wlan0')
 
     # If no rows returned, create a new row.
     if res == 0:
-        print "Row not found. Need to create a new entry."
+        # print "Row not found. Need to create a new entry."
         # Get the IP address of the unit.
         ip = get_ip_address('wlan0')
         # print ip
@@ -78,20 +84,13 @@ def PowerLog():
     # print res
 
 def LogAccess(rfid):
-    # This file manages the connectivity to the database for logging access to the units. As a fallback, it
-    # writes the access to a local log file
-    db = MySQLdb.connect(host="mysql.shilohmadsen.com",
-                  user="shilohmadsencom",
-                  passwd="6DNN7Snp",
-                  db="themagiccastle")
+    construct()
 
-    # you must create a Cursor object. It will let you execute all the queries you need
-    cur = db.cursor()
-
-    #try to write access of the pi to a log file
-    activationTime = datetime.datetime.now()
-    activationTime = activationTime.strftime('%Y-%m-%d %H:%M:%S')
-    res = cur.execute("INSERT INTO Activity (RFID, PIID, ActivationTime) VALUES (%s,1,%s);",(rfid,activationTime))
+    # Get the PI ID
+    cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
+    piid = cur.fetchone()[0]
+    # Try to write access of the pi to a log file
+    res = cur.execute("""INSERT INTO Activity (RFID, ActivationTime, ActivationType, PIID) VALUES (%s, %s, 0, %s);""", (rfid, logTime, 2, piid))
     print res
     #if connect fails or if write fails, log connection failure to an error log and log the access to a local access log.
 

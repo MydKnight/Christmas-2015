@@ -2,4 +2,4 @@ __author__ = 'madsens'
 
 import Logging
 
-Logging.PowerLog()
+Logging.LogAccess(1234)
