@@ -41,16 +41,15 @@ def HeartBeat():
         res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s);",(logTime,str(ip), str(mac)))
         print res
 
-    #Once row is created in PIs if need be, update activity with heartbeat time and ip address
-    else:
-        #print "Row Found. Need to update row."
-        cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
-        piid = cur.fetchone()[0]
-        #Create new item for the Heartbeat Activity
-        res = cur.execute("""INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 1, %s);""", (logTime, piid))
-        #Update the pis table with IP address
-        res = cur.execute("UPDATE PIS SET IPAddress = %s, HeartBeat = %s WHERE PIID = %s;",(ip, logTime, piid))
-        #print res
+    # Once row is created in PIs if need be, update activity with heartbeat time and ip address
+    # print "Row Found. Need to update row."
+    cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
+    piid = cur.fetchone()[0]
+    # Create new item for the Heartbeat Activity
+    res = cur.execute("""INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 1, %s);""", (logTime, piid))
+    # Update the pis table with IP address
+    res = cur.execute("UPDATE PIS SET IPAddress = %s, HeartBeat = %s WHERE PIID = %s;",(ip, logTime, piid))
+    # print res
 
 def PowerLog():
     #Select the row in the pis table that matches the mac address
@@ -68,15 +67,15 @@ def PowerLog():
         # print ip
         res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s);",(logTime,str(ip), str(mac)))
 
-        # Once row is created in PIs if need be, update activity with power on time and ip address
-        print "Row Found. Need to update row."
-        cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
-        piid = cur.fetchone()[0]
-        # Create new item for the Power On Activity
-        res = cur.execute("""INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 0, %s);""", (logTime, piid))
-        # Update the pis table with IP address
-        res = cur.execute("UPDATE PIS SET IPAddress = %s, HeartBeat = %s WHERE PIID = %s;",(ip, logTime, piid))
-        # print res
+    # Once row is created in PIs if need be, update activity with power on time and ip address
+    print "Row Found. Need to update row."
+    cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
+    piid = cur.fetchone()[0]
+    # Create new item for the Power On Activity
+    res = cur.execute("""INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 0, %s);""", (logTime, piid))
+    # Update the pis table with IP address
+    res = cur.execute("UPDATE PIS SET IPAddress = %s, HeartBeat = %s WHERE PIID = %s;",(ip, logTime, piid))
+    # print res
 
 def LogAccess(rfid):
     # This file manages the connectivity to the database for logging access to the units. As a fallback, it
