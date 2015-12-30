@@ -6,24 +6,24 @@ import fcntl
 import struct
 from uuid import getnode as get_mac
 
+# This file manages the connectivity to the database for logging access to the units. As a fallback, it
+# writes the access to a local log file
+
+#Global Variables used by most/all functions
+db = MySQLdb.connect(host="mysql.shilohmadsen.com",
+              user="shilohmadsencom",
+              passwd="6DNN7Snp",
+              db="themagiccastle")
+
+mac = get_mac()
+
+#DB Cursor
+cur = db.cursor()
+
 def HeartBeat():
-    # This file manages the connectivity to the database for logging access to the units. As a fallback, it
-    # writes the access to a local log file
-    db = MySQLdb.connect(host="mysql.shilohmadsen.com",
-                  user="shilohmadsencom",
-                  passwd="6DNN7Snp",
-                  db="themagiccastle")
-
-    #Get the PIs Mac Address
-    mac = get_mac()
-    print mac
-
-    # you must create a Cursor object. It will let you execute all the queries you need
-    cur = db.cursor()
-
     #Select the row in the pis table that matches the mac address
     res = cur.execute("SELECT * FROM  PIS WHERE MacAddress = %s;",str(mac))
-    print res
+    #print res
 
     #If no rows returned, create a new row.
     if res == 0:
