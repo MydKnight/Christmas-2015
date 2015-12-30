@@ -17,6 +17,10 @@ db = MySQLdb.connect(host="mysql.shilohmadsen.com",
 
 mac = get_mac()
 
+#Current Time - Used for various logging
+logTime = datetime.datetime.now()
+logTime = logTime.strftime('%Y-%m-%d %H:%M:%S')
+
 #DB Cursor
 cur = db.cursor()
 
@@ -25,28 +29,25 @@ def HeartBeat():
     res = cur.execute("SELECT * FROM  PIS WHERE MacAddress = %s;",str(mac))
     #print res
 
+    #Get the IP address of the unit.
+    ip = get_ip_address('wlan0')
+    #print ip
+
     #If no rows returned, create a new row.
     if res == 0:
-        print "Row not found. Need to create a new entry."
-        #Assume install date is now as its not in our database
-        installDate = datetime.datetime.now()
-        installDate = installDate.strftime('%Y-%m-%d %H:%M:%S')
-        #Get the IP address of the unit.
-        ip = get_ip_address('wlan0')
-        print ip
-        res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s);",(installDate,str(ip), str(mac)))
+        #print "Row not found. Need to create a new entry."
+        res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s);",(logTime,str(ip), str(mac)))
         print res
+
+    #Once row is created in PIs if need be, update activity with heartbeat time and ip address
     else:
         print "Row Found. Need to update row."
-        heartbeat = datetime.datetime.now()
-        heartbeat = heartbeat.strftime('%Y-%m-%d %H:%M:%S')
-        #Get the IP address of the unit.
-        ip = get_ip_address('wlan0')
-        print ip
         cur.execute("SELECT PIID FROM PIS WHERE MacAddress = %s;",str(mac))
         piid = cur.fetchone()[0]
-        print type(piid)
-        res = cur.execute("""INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 1, %s);""", (heartbeat, piid))
+        #Create new item for the Heartbeat Activity
+        res = cur.execute("""INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 1, %s);""", (logTime, piid))
+        #Update the pis table with IP address
+        res = cur.execute("UPDATE PIS SET IPAddress = %s WHERE PIID = %s;",(ip, piid))
         print res
 
     #ToDo: Allow remote naming of PI by MAC Address.
