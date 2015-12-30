@@ -77,15 +77,15 @@ def PowerLog():
 
     #If no rows returned, create a new row.
     if res == 0:
-        print "Row not found. Need to create a new entry."
+        #print "Row not found. Need to create a new entry."
         #Assume install date is now as its not in our database
         installDate = datetime.datetime.now()
         installDate = installDate.strftime('%Y-%m-%d %H:%M:%S')
         #Get the IP address of the unit.
         ip = get_ip_address('wlan0')
-        print ip
+        #print ip
         res = cur.execute("INSERT INTO PIS (Status, InstallDate, IPAddress, MacAddress) VALUES (1,%s,%s, %s);",(installDate,str(ip), str(mac)))
-        print res
+        #print res
 
     #Now that we have an entry in the Pis DB, Update the activity for this pi in the activities db.
     heartbeat = datetime.datetime.now()
