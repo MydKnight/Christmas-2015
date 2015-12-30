@@ -47,7 +47,7 @@ def HeartBeat():
         #Create new item for the Heartbeat Activity
         res = cur.execute("""INSERT INTO Activity (ActivationTime, ActivationType, PIID) VALUES (%s, 1, %s);""", (logTime, piid))
         #Update the pis table with IP address
-        res = cur.execute("UPDATE PIS SET IPAddress = %s WHERE PIID = %s;",(ip, piid))
+        res = cur.execute("UPDATE PIS SET IPAddress = %s, HeartBeat = %s WHERE PIID = %s;",(ip, logTime, piid))
         print res
 
     #ToDo: Allow remote naming of PI by MAC Address.
