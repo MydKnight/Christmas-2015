@@ -1,5 +1,6 @@
 __author__ = 'madsens'
 import Movies
+import Logging
 
 print 'Starting'
 Movies.StartLoop('/home/pi/Christmas-2015/Assets/Fireplace')
